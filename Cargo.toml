@@ -1,0 +1,7 @@
+[package]
+name = "port-sniffer-cli"
+version = "0.1.0"
+authors = ["dennis"]
+edition = "2018"
+
+[dependencies]
