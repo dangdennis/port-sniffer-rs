@@ -50,20 +50,20 @@ impl Arguments {
 
 fn scan(sender: Sender<u16>, start_port: u16, addr: IpAddr, num_threads: u16) {
     let mut port: u16 = start_port + 1;
-    let socket_addr = SocketAddr::new(addr, 8080);
+    let socket_addr = SocketAddr::new(addr, port);
     loop {
         match TcpStream::connect(socket_addr) {
             Ok(_) => {
-                print!("...");
+                print!(".");
                 io::stdout().flush().unwrap();
-                sender.send(port).unwrap()
+                sender.send(port).unwrap();
             }
             Err(_) => {}
         }
+
         if (MAX - port) <= num_threads {
             break;
         }
-
         port += num_threads;
     }
 }
